@@ -1,0 +1,72 @@
+paths:
+  /api/users:
+    get:
+      summary: Obtiene todos los datos de los usuarios
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Entrego toda la informacion correctamente
+          content:
+            application/json:
+              schema: 
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        "500":
+          description: Error inesperado
+    post:
+      summary: Obtiene todos los datos de los usuarios
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+           schema:
+            $ref: '#/components/requestBodies/nuevoUsuario'
+      responses:
+        "200":
+          description: Entrego toda la informacion correctamente
+        "500":
+          description: Error inesperado
+
+components:
+  requestBodies:
+    nuevoUsuario:
+      type: Object
+      properties:
+        first_name:
+          type: String
+          description: Nombre de usuario 
+        last_name:
+          type: String
+          description: Apellido de usuario 
+        email:
+          type: String
+          description: Correo del usuario
+      example:
+        first_name: Coder
+        last_name: Coder
+        email: coder@correo.com
+  schemas: 
+    User:
+      type: Object
+      properties:
+        id:
+          type: String
+          description: Id autogenerado de la bd
+        first_name:
+          type: String
+          description: Nombre de usuario 
+        last_name:
+          type: String
+          description: Apellido de usuario 
+        email:
+          type: String
+          description: Correo del usuario
+      example:
+        id: ObjectId('1234456avv')
+        first_name: Coder
+        last_name: Coder
+        email: coder@correo.com
